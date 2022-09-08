@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/components/Home/Home.vue'
 import Library from '@/components/Library/Library.vue'
+import Payment from '@/components/Payment/Payment.vue'
 
 const routes = [
     {
@@ -11,6 +12,10 @@ const routes = [
     {
         path: '/library',
         component: Library
+    },
+    {
+        path: '/payment',
+        component: Payment
     },
 ]
 

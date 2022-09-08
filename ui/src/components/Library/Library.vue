@@ -9,7 +9,7 @@ import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 
 <template>
   <NavBarMenu />
-  <div class="mt-24 place-items-center w-[80%] m-auto grid grid-cols-4 gap-y-4">
+  <div class="ml-64 mt-24 place-items-center w-[80%] grid grid-cols-4 gap-y-4">
     <ThumbnailItem />
     <ThumbnailItem />
     <ThumbnailItem />
