@@ -1,21 +1,15 @@
-import { InjectionKey } from "vue";
-import { createStore, Store , useStore as baseUseStore} from "vuex";
-import cart from "@/store/modules/cart";
+import { createStore} from "vuex";
+import toggle, { toggleState } from "@/store/modules/toggle";
 
 export interface State {
-    count: number
+    toggle: toggleState
   }
 
 // Create a new store instance.
-export const store = createStore({
+export const store = createStore<State>({
   modules: {
-    cart,
+    toggle,
     // b: moduleB
   },
 });
 
-export const key: InjectionKey<Store<State>> = Symbol();
-
-export function useStore () {
-    return baseUseStore(key)
-  }
