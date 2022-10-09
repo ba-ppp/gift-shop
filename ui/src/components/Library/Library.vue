@@ -11,10 +11,6 @@ import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
   <NavBarMenu />
   <div class="ml-64 mt-24 place-items-center w-[80%] grid grid-cols-4 gap-y-4">
     <ThumbnailItem />
-    <ThumbnailItem />
-    <ThumbnailItem />
-    <ThumbnailItem />
-    <ThumbnailItem />
   </div>
 </template>
 
