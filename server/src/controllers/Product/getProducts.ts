@@ -17,8 +17,8 @@ export const getProduct = () => {
             }
             let data = {
                 id_product: "",
-                id: "",
                 name: "",
+                id: [] as any,
                 size: [] as any,
                 price: [] as any,
                 describes: "",
@@ -39,12 +39,12 @@ export const getProduct = () => {
                     listItem.id_cat = item.id_cat;
                     if(item.id_product === currentProduct){
                         data.id_product = item.id_product
-                        data.id = item.id_detail;
                         data.name = item.name_product;
                         data.describes = item.describes;
                         data.status = item.stt;
                         data.color = item.color;
                         data.image = item.image
+                        data.id.push(item.id_detail);
                         data.size.push(item.size);
                         data.price.push(item.price);
                         
@@ -53,12 +53,12 @@ export const getProduct = () => {
                         currentProduct = item.id_product;
                         const newData = {
                             id_product : item.id_product,
-                            id : item.id_detail,
                             name : item.name_product,
                             describes : item.describes,
                             status : item.stt,
                             color : item.color,
                             image : item.image,
+                            id : [item.id_detail],
                             size : [item.size],
                             price: [item.price],
                         };
