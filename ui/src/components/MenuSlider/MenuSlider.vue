@@ -24,17 +24,17 @@ export default {
     class="fixed top-[73px] left-0"
   >
     <Collapse>
-      <CollapsePanel class="p-5" :show-arrow="false" header="Header 1">
+      <CollapsePanel class="p-5" :show-arrow="false" header="Dog">
        
       </CollapsePanel>
-      <CollapsePanel :show-arrow="false" header="Header 2">
+      <CollapsePanel :show-arrow="false" header="Pokemon">
         <List>
           <List.Item>Content 1</List.Item>
           <List.Item>Content 2</List.Item>
           <List.Item>Content 3</List.Item>
         </List>
       </CollapsePanel>
-      <CollapsePanel :show-arrow="false" header="Header 3">
+      <CollapsePanel :show-arrow="false" header="Other">
         <List.Item>Content 1</List.Item>
         <List.Item>Content 2</List.Item>
         <List.Item>Content 3</List.Item>

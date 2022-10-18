@@ -1,7 +1,7 @@
 <script >
 import { ref } from "vue";
 import rabbit from "@/assets/images/tho-tim-long-2.png";
-import addToCart from "@/assets/icons/add_to_cart.svg";
+import addToCart from "/src/assets/icons/add_to_cart.svg";
 import Box from "./Box.vue";
 
 // defineProps<{ msg: string }>()
@@ -10,24 +10,31 @@ export default{
 
   data: function () {
     return {
-      product: []
+      product: [],
+      indexPrice: 0,
+      id: '',
     }
   },
   async created() {
-    await axios.get('http://localhost:8080/product/getProduct')
+    await axios.get('http://localhost:8080/product/getProductByCat?cat=pokemon',{ query: { cat : 'pokemon' } })
     .then((response) => {
       
       this.product = response.data;
-      console.log(this.product.items)
     })
-  }
+  },
+  methods: {
+            searchPrice(index,id_product) {
+                  this.indexPrice= index;
+                  this.id=id_product;
+                  console.log(index);
+                }
+            }
 }
 // const count = ref(0)
-
 </script>
 
 <template>
-  <div v-for="(pro) in product">
+  <!-- <div class="row" v-for="(pro) in product">
     <div class="border border-solid bg-white border-white w-64 h-92 rounded-2xl" v-for="(item) in pro.items">
       <div
         class="w-full h-64 bg-cover bg-center rounded-2xl"
@@ -54,7 +61,40 @@ export default{
           
       </div>
     </div>
-  </div>
+  </div> -->
+    <div class="border border-solid bg-white border-white w-64 h-92 rounded-2xl" v-for="(item) in product">
+      <div
+        class="w-full h-64 bg-cover bg-center rounded-2xl"
+        :style="{ backgroundImage: 'url(' + '/src/assets/images/'+ item.image + ')' }"
+      ></div>
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <div class="text-store-purple-light capitalize">
+            {{item.name}}
+          </div>
+          <div class="flex">
+            <div class="text-store-pink mt-2">{{item.price[0]}}đ </div>
+
+            <div class="text-store-pink mt-2" v-for="(price,index) in item.price">
+              <div v-if = "index === indexPrice && item.id_product === id"> + {{price-item.price[0]}}đ</div>
+              
+            </div>
+        </div>
+          <!-- <div class="text-store-pink mt-2" >{{item.price[0]}}đ</div> -->
+        </div>
+        <div class="hover:opacity-75 cursor-pointer">
+          <img :src="addToCart" height="24" />
+        </div>
+      </div>
+      <div class="flex space-x-1 " >
+        <div
+          class="flex items-center justify-center rounded-md p-2 w-9 h-4 border border-solid text-store-purple-light border-store-purple-light "
+          v-for="(size,index) in item.size">
+          
+          <button @click="searchPrice(index,item.id_product)">{{size}}</button>
+        </div>
+      </div>
+    </div>
 </template>
 
 <style scoped>
