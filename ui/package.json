@@ -14,7 +14,7 @@
     "pinia": "^2.0.23",
     "vue": "^3.2.37",
     "vue-router": "^4.0.13",
-    "vuex": "^4.0.2"
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.7.14",

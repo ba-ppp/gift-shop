@@ -13,6 +13,12 @@ const routes = [
         path: '/library',
         component: Library
     },
+    
+    // {
+    //     path: '/library/:cat',
+    //     name: 'contact.edit',
+    //     props: (routes: { params: { cat: string } }) => ({ cat: parseInt(routes.params.cat) })
+    // },
     {
         path: '/payment',
         component: Payment
