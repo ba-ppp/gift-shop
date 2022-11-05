@@ -1,10 +1,9 @@
-import { createStore} from "vuex";
+import { createStore } from "vuex";
 import toggle, { toggleState } from "@/store/modules/toggle";
 
 export interface State {
-    toggle: toggleState
-  }
-
+  toggle: toggleState
+}
 // Create a new store instance.
 export const store = createStore<State>({
   modules: {
