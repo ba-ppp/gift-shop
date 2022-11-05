@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import ThumbnailItem from "./ThumbnailItem.vue";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
-
 // defineProps<{ msg: string }>()
 // const count = ref(0)
 </script>
