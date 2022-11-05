@@ -26,12 +26,17 @@ create table product_detail (
 );
 
 create table bill (
-  id_bill int primary key AUTO_INCREMENT, 
-  id_detail int not null references product_detail(id_detail),
+  id_bill varchar(100) primary key, 
   name_cus varchar(100) not null,
   phone_cus varchar(12) not null,
   total_price float default 0 check (total_price >=0),
+  ship varchar(100) not null,
   date_buy timestamp default current_timestamp
+);
+create table bill_detail (
+  id_detail_bill int primary key AUTO_INCREMENT,
+  id_bill varchar(100) not null references bill(id_bill),
+  id_detail int not null references product_detail(id_detail)
 );
 
 -- insert category
@@ -40,7 +45,6 @@ insert into category values("dog","dog");
 
 -- insert into product 
 -- delimiter $
-
 create procedure insert_product(
 	id_product varchar(100),
     name_product varchar(100),
@@ -196,8 +200,8 @@ call insert_product("shiba","shiba","dog",
                     "Suitable For Ages: 0+",
                     "normal", "shiba.png", "65cm", "600000");
 
--- select * from product_detail;
--- select * from bill;
 
--- select * from `product_detail` inner join `product` on `product`.`id_product` = `product_detail`.`id_product` where `id_cat` = 'pokemon'
+
+
+
 
