@@ -67,7 +67,7 @@ export default {
         this.bill.listProduct.push(item.idDetail)
       });
       this.productAddedMessage();
-      console.log(this.bill);
+      this.cart.splice(0,this.cartQuantity);
     },
   },
 };

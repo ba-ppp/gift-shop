@@ -34,6 +34,10 @@ export default {
     handleClickPayment() {
       router.push("/payment");
     },
+    deleteCart(idDetail) {
+      let indexProduct = this.cart.findIndex(p => p.idDetail === idDetail);
+      this.cart.splice(indexProduct, 1 );
+    }
   },
 };
 </script>
@@ -46,6 +50,11 @@ export default {
         <div>{{item.selectedSize}}</div>
         <div>{{item.selectedPrice}}</div>
         <div>x {{item.quantity}} </div>
+        <div>
+      <button class="btn btn-sm btn-success" @click="deleteCart(item.idDetail)">
+        <i class="fas fa-plus" /> Xoa
+      </button>
+    </div>
       </div>
     </div>
   </div>
