@@ -24,12 +24,19 @@ const handleClick = () => {
           All you need is a nap under the shady tree
         </div>
         <div class="flex space-x-3 mt-10">
-          <div
+          <!-- <div
             v-on:click="handleClick()"
             class="button_primary w-[5rem] h-[3rem] text-store-blue border-2 border-solid border-store-blue"
           >
             Shop now
-          </div>
+          </div> -->
+          <a-button
+            v-on:click="handleClick()"
+            type="primary"
+            class="text-xl rounded-lg w-fit h-[3.5rem] text-white border-2 bg-store-blue border-solid border-store-blue"
+          >
+            Shop now
+          </a-button>
         </div>
       </div>
       <img width="512" height="512" :src="bunny" />
@@ -46,10 +53,13 @@ const handleClick = () => {
       transparent 50%
     ),
     radial-gradient(at 32% 99%, hsla(264, 87%, 20%, 1) 0px, transparent 50%); */
-    background-color:hsla(259,75%,21%,1);
-background-image:
-radial-gradient(at 47% 41%, hsla(259,75%,21%,1) 0px, transparent 50%),
-radial-gradient(at 47% 41%, hsla(259,75%,21%,1) 0px, transparent 50%),
-radial-gradient(at 99% 39%, hsla(75,0%,100%,1) 0px, transparent 50%);
+  background-color: hsla(259, 75%, 21%, 1);
+  background-image: radial-gradient(
+      at 47% 41%,
+      hsla(259, 75%, 21%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 47% 41%, hsla(259, 75%, 21%, 1) 0px, transparent 50%),
+    radial-gradient(at 99% 39%, hsla(75, 0%, 100%, 1) 0px, transparent 50%);
 }
 </style>

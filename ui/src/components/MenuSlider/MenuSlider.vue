@@ -1,59 +1,89 @@
-<script>
-import { store } from "@/store";
-import Collapse from "ant-design-vue/lib/collapse/Collapse";
-import CollapsePanel from "ant-design-vue/lib/collapse/CollapsePanel";
-import List from "ant-design-vue/lib/list/";
-import ListItem from "ant-design-vue/lib/list/";
-import { ref } from "vue";
-const isMenuOpen = store?.state.toggle.isShowMenuSlider;
-import { mapGetters, mapState } from "vuex";
-import { router } from "../Routes";
-
-export default {
-  data: function () {
+<template>
+  <a-menu
+  class="fixed top-[73px] left-0"
+    id="dddddd"
+    v-model:openKeys="openKeys"
+    v-model:selectedKeys="selectedKeys"
+    style="width: 256px"
+    mode="inline"
+    @click="handleClick"
+  >
+    <a-sub-menu key="sub1" @titleClick="titleClick">
+      <template #icon>
+        <MailOutlined />
+      </template>
+      <template #title>Pokemon</template>
+      <a-menu-item-group key="g1" title="">
+        <template #icon>
+          <QqOutlined />
+        </template>
+        <template #title>Item 1</template>
+        <a-menu-item key="1">Option 1</a-menu-item>
+        <a-menu-item key="2">Option 2</a-menu-item>
+      </a-menu-item-group>
+      <a-menu-item-group key="g2" title="Item 2">
+        <a-menu-item key="3">Option 3</a-menu-item>
+        <a-menu-item key="4">Option 4</a-menu-item>
+      </a-menu-item-group>
+    </a-sub-menu>
+    <a-sub-menu key="sub2" @titleClick="titleClick">
+      <template #icon>
+        <AppstoreOutlined />
+      </template>
+      <template #title>Pokemon</template>
+      <a-menu-item key="5">Option 5</a-menu-item>
+      <a-menu-item key="6">Option 6</a-menu-item>
+      <a-sub-menu key="sub3" title="Submenu">
+        <a-menu-item key="7">Option 7</a-menu-item>
+        <a-menu-item key="8">Option 8</a-menu-item>
+      </a-sub-menu>
+    </a-sub-menu>
+    <a-sub-menu key="sub4">
+      <template #icon>
+        <SettingOutlined />
+      </template>
+      <template #title>Others</template>
+      <a-menu-item key="9">Option 9</a-menu-item>
+      <a-menu-item key="10">Option 10</a-menu-item>
+      <a-menu-item key="11">Option 11</a-menu-item>
+      <a-menu-item key="12">Option 12</a-menu-item>
+    </a-sub-menu>
+  </a-menu>
+</template>
+<script lang="ts">
+import { defineComponent, ref, watch } from 'vue';
+import { MailOutlined, QqOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import type { MenuProps } from 'ant-design-vue';
+export default defineComponent({
+  components: {
+    MailOutlined,
+    QqOutlined,
+    AppstoreOutlined,
+    SettingOutlined,
+  },
+  setup() {
+    const selectedKeys = ref<string[]>(['1']);
+    const openKeys = ref<string[]>(['sub1']);
+    const handleClick: MenuProps['onClick'] = e => {
+      console.log('click', e);
+    };
+    const titleClick = (e: Event) => {
+      console.log('titleClick', e);
+    };
+    watch(
+      () => openKeys,
+      val => {
+        console.log('openKeys', val);
+      },
+    );
     return {
-      category: ''
-    }
+      selectedKeys,
+      openKeys,
+
+      handleClick,
+      titleClick,
+    };
   },
-  components: { Collapse, CollapsePanel, List, ListItem },
-  computed: {
-    ...mapState({
-      isMenuOpen: (state) => state.toggle.isShowMenuSlider,
-    }),
-  },
-  methods: {
-    handleClickType(header) {
-      this.category = header;
-    },
-  }
-};
+});
 </script>
 
-<template>
-  <List
-    v-bind:class="isMenuOpen ? 'duration-500 w-64' : 'duration-500 w-20'"
-    class="fixed top-[73px] left-0"
-  >
-    <Collapse>
-      <CollapsePanel class="p-5" :show-arrow="false" header="Pokemon"  @click="handleClickType('pokemon')">
-       
-      </CollapsePanel>
-      <CollapsePanel :show-arrow="false" header="pokemon">
-        <List>
-          <List.Item>Content 1</List.Item>
-          <List.Item>Content 2</List.Item>
-          <List.Item>Content 3</List.Item>
-        </List>
-      </CollapsePanel>
-      <CollapsePanel :show-arrow="false" header="Other">
-        <List.Item>Content 1</List.Item>
-        <List.Item>Content 2</List.Item>
-        <List.Item>Content 3</List.Item>
-      </CollapsePanel>
-    </Collapse>
-  </List>
-</template>
-<!-- <style scoped src="ant-design-vue/dist/antd.css"><style> -->
-<style scoped>
-@import "ant-design-vue/dist/antd.css";
-</style>
