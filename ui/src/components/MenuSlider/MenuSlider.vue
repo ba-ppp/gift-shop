@@ -12,31 +12,31 @@
       <template #icon>
         <MailOutlined />
       </template>
-      <template #title>Pokemon</template>
+      <template #title>Teddy Bear</template>
       <a-menu-item-group key="g1" title="">
         <template #icon>
           <QqOutlined />
         </template>
         <template #title>Item 1</template>
-        <a-menu-item key="1">Option 1</a-menu-item>
-        <a-menu-item key="2">Option 2</a-menu-item>
+        <a-menu-item key="1" @click="changeCat('pokemon')">Pokemons</a-menu-item>
+        <a-menu-item key="2" @click="changeCat('dog')">Dogs</a-menu-item>
       </a-menu-item-group>
-      <a-menu-item-group key="g2" title="Item 2">
+      <!-- <a-menu-item-group key="g2" title="Item 2">
         <a-menu-item key="3">Option 3</a-menu-item>
         <a-menu-item key="4">Option 4</a-menu-item>
-      </a-menu-item-group>
+      </a-menu-item-group> -->
     </a-sub-menu>
     <a-sub-menu key="sub2" @titleClick="titleClick">
       <template #icon>
         <AppstoreOutlined />
       </template>
-      <template #title>Pokemon</template>
+      <template #title>KeyRing</template>
       <a-menu-item key="5">Option 5</a-menu-item>
       <a-menu-item key="6">Option 6</a-menu-item>
-      <a-sub-menu key="sub3" title="Submenu">
+      <!-- <a-sub-menu key="sub3" title="Submenu">
         <a-menu-item key="7">Option 7</a-menu-item>
         <a-menu-item key="8">Option 8</a-menu-item>
-      </a-sub-menu>
+      </a-sub-menu> -->
     </a-sub-menu>
     <a-sub-menu key="sub4">
       <template #icon>
@@ -54,12 +54,25 @@
 import { defineComponent, ref, watch } from 'vue';
 import { MailOutlined, QqOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import type { MenuProps } from 'ant-design-vue';
+import { mapWritableState, mapActions } from 'pinia';
+import { useProductsStore } from "@/store/modules/product";
 export default defineComponent({
   components: {
     MailOutlined,
     QqOutlined,
     AppstoreOutlined,
     SettingOutlined,
+  },
+  computed: {
+    ...mapWritableState(useProductsStore, ['category']),
+  },
+  methods: {
+    ...mapActions(useProductsStore, ['getProductStore']),
+    changeCat: function (cat: any) {
+      this.category = cat;
+      this.getProductStore();
+      console.log(this.category)
+    },
   },
   setup() {
     const selectedKeys = ref<string[]>(['1']);

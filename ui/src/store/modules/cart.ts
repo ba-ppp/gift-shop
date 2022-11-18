@@ -9,14 +9,15 @@ export const useCartStore = defineStore('cart', {
         listProduct: [],
         name : '',
         phone : '',
-        ship : '',
         totalPrice : 0,
+        typeShip : '',
       },
     };
   },
   actions: {
     async addBill() {
-      const response = await axios.post('http://localhost:8080//bill/addBill', this.bill);
+      const response = await axios.post('http://localhost:8080/bill/addBill', this.bill);
+      
     },
   },
   getters: {
