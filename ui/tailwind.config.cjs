@@ -9,7 +9,9 @@ module.exports = {
         store: {
           "purple-light": "#9a6aff",
           "purple-dark": "#280d5f",
+          "ghosh-white": "#f8f8ff",
           "purple-medium": "#27262d",
+          white: "#ffffff",
           sky: "#31d0aa",
           blue: "#1fc7d4",
           pink: "#ed4b9e",

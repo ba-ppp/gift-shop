@@ -59,7 +59,7 @@ export const getProductByCat = () => {
                         };
                         data = {...newData}
                     }
-                    console.log(products)
+                    
                 });
             products.push(data);
             res.send(products);

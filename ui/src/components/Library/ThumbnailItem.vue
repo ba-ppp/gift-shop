@@ -21,7 +21,7 @@ export default {
     return {
       listPrice: [],
       id: '',
-      cate: 'pokemon',
+      // cate: 'pokemon',
       selectedProduct: 0,
       selectedSize: 0,
     }
@@ -168,7 +168,7 @@ export default {
     </div>
     <div class="flex space-x-1 ">
       <div
-        class="flex items-center justify-center rounded-md p-2 w-9 h-4 border border-solid text-store-purple-light border-store-purple-light"
+        class="flex items-center justify-center rounded-md p-2 w-10 h-4 border border-solid text-store-purple-light border-store-purple-light"
         :class="(id === selectedProduct) ? classActive(id, index) : classActiveItem(index)"
         v-for="(size, index) in item.size" @click="handleClickSize(id, index)">
         <div>

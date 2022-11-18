@@ -2,7 +2,8 @@
 -- show databases;
 -- create database teddy_bears;
 -- use teddy_bears;
-
+-- select * from bill_detail join bill where bill.id_bill = bill_detail.id_bill;
+-- select * from bill_detail;
 create table category (
   id_cat varchar(100) primary key, 
   name_cat varchar(100) not null
@@ -30,13 +31,14 @@ create table bill (
   name_cus varchar(100) not null,
   phone_cus varchar(12) not null,
   total_price float default 0 check (total_price >=0),
-  ship varchar(100) not null,
+  ship varchar(100),
   date_buy timestamp default current_timestamp
 );
 create table bill_detail (
   id_detail_bill int primary key AUTO_INCREMENT,
   id_bill varchar(100) not null references bill(id_bill),
-  id_detail int not null references product_detail(id_detail)
+  id_detail int not null references product_detail(id_detail),
+  quantity int default 0
 );
 
 -- insert category
@@ -199,9 +201,3 @@ call insert_product("shiba","shiba","dog",
 call insert_product("shiba","shiba","dog",
                     "Suitable For Ages: 0+",
                     "normal", "shiba.png", "65cm", "600000");
-
-
-
-
-
-
