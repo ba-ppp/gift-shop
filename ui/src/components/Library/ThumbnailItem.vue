@@ -103,6 +103,7 @@ export default {
       // item.quantity = 1;
       // this.cart.push({ ...item });
       // this.productAddedMessage();
+      this.productAddedMessage();
       console.log(this.cart);
     }
   }
