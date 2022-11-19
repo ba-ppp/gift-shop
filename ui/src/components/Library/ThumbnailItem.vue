@@ -84,24 +84,25 @@ export default {
     },
     addToCart: function (item) {
       
-      // let indexProduct = this.cart.findIndex(p => p.id_product === item.id_product);
-      // if (indexProduct > -1) {
-      //   let tempProduct = this.cart[indexProduct];
-      //   this.cart.splice(indexProduct, 1);
-      //   tempProduct.quantity++;
-      //   this.cart.push(tempProduct);
-      // } else {
-      //   item.quantity = 1;
-      //   item.selectedPrice = item.price[this.selectedSize];
-      //   item.selectedSize = item.size[this.selectedSize];
-      //   this.cart.push({...item});
-      // }
-      item.selectedPrice = item.price[this.selectedSize];
-      item.selectedSize = item.size[this.selectedSize];
-      item.idDetail = item.id[this.selectedSize];
-      item.quantity = 1;
-      this.cart.push({ ...item });
-      this.productAddedMessage();
+      let indexProduct = this.cart.findIndex(p => p.id_product === item.id_product && p.selectedSize === item.size[this.selectedSize]);
+      if (indexProduct > -1) {
+        let tempProduct = this.cart[indexProduct];
+        this.cart.splice(indexProduct, 1);
+        tempProduct.quantity++;
+        this.cart.push(tempProduct);
+      } else {
+        item.quantity = 1;
+        item.selectedPrice = item.price[this.selectedSize];
+        item.selectedSize = item.size[this.selectedSize];
+        item.idDetail = item.id[this.selectedSize];
+        this.cart.push({...item});
+      }
+      // item.selectedPrice = item.price[this.selectedSize];
+      // item.selectedSize = item.size[this.selectedSize];
+      // item.idDetail = item.id[this.selectedSize];
+      // item.quantity = 1;
+      // this.cart.push({ ...item });
+      // this.productAddedMessage();
       console.log(this.cart);
     }
   }
