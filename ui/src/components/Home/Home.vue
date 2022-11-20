@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import bunny from "@/assets/images/bunny.png";
 import { router } from "../Routes";
+import { storeToRefs } from "pinia";
+import { useTransaction } from "@/store/transaction";
+
+const transaction = useTransaction();
+
+const { checkConnected } = useTransaction();
+const { account, isLoading } = storeToRefs(transaction);
 
 // defineProps<{ msg: string }>()
 const handleClick = () => {
@@ -33,9 +39,17 @@ const handleClick = () => {
           <a-button
             v-on:click="handleClick()"
             type="primary"
-            class="text-xl rounded-lg w-fit h-[3.5rem] text-white border-2 bg-store-blue border-solid border-store-blue"
+            class="text-lg rounded-lg w-fit h-[3.5rem] border-2 bg-transparent text-store-blue border-solid border-store-blue"
           >
             Shop now
+          </a-button>
+          <a-button
+          v-if="!account"
+            v-on:click="checkConnected()"
+            type="primary"
+            class="text-lg rounded-lg w-fit h-[3.5rem] text-white border-2 bg-store-blue border-solid border-store-blue"
+          >
+            Connect wallet
           </a-button>
         </div>
       </div>

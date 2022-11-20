@@ -13,6 +13,8 @@ import PaymentItem from "./PaymentItem.vue";
 import { mapState, mapActions, mapWritableState } from 'pinia';
 import { useCartStore } from "@/store/modules/cart";
 import { defineComponent, reactive, toRaw, computed } from 'vue';
+import { storeToRefs } from "pinia";
+import { useTransaction } from "@/store/transaction";
 
 export default {
   data: function () {
@@ -29,6 +31,7 @@ export default {
 
   computed: {
     ...mapWritableState(useCartStore, ['bill', 'cart', 'cartTotal', 'cartQuantity']),
+    ...mapState(useTransaction, ['checkConnected', 'sendTransaction', 'account', 'isLoading']),
     // ...mapState({
     //   isMenuOpen: (state) => state.toggle.isShowMenuSlider,
     // }),
@@ -65,7 +68,11 @@ export default {
         width: 300,
       })
     },
-    payment: function (name, phone, picked) {
+    payment: async function (name, phone, picked) {
+      await this.checkConnected();
+      if (this.account) {
+        const isPaid = this.sendTransaction('0.0001');
+      }
       if (!this.cart) {
         this.bill.name = name;
         this.bill.phone = phone;
@@ -77,6 +84,8 @@ export default {
           product.quantity = item.quantity;
           this.bill.listProduct.push(product);
         });
+
+
         this.addBill();
         this.productSuccessMessage();
         this.cart.splice(0, this.cartQuantity);
@@ -90,8 +99,6 @@ export default {
         totalPrice: 0,
         typeShip: '',
       };
-      console.log(this.bill);
-
     },
   },
   setup() {
