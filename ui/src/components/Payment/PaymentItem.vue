@@ -80,7 +80,7 @@ export default {
       </a-col>
       <a-col :span="4">
         <p>
-        <div style="text-align: right">{{ item.selectedPrice }}đ</div>
+        <div style="text-align: right">{{ item.selectedPrice }}eth</div>
         <!-- <div>{{ item.quantity }} </div> -->
         <div>
           <a-form-item name="quantity">

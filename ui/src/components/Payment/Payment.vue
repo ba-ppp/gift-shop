@@ -68,27 +68,44 @@ export default {
         width: 300,
       })
     },
+    productPayFalseMessage: function () {
+      Swal.fire({
+        position: 'top',
+        title: 'Pay failed!',
+        icon: 'error',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        timerProgressBar: true,
+        timer: 1000,
+        width: 300,
+      })
+    },
     payment: async function (name, phone, picked) {
       await this.checkConnected();
-      if (this.account) {
-        const isPaid = this.sendTransaction('0.0001');
-      }
-      if (!this.cart) {
-        this.bill.name = name;
-        this.bill.phone = phone;
-        this.bill.typeShip = picked;
-        this.bill.totalPrice = this.cartTotal;
-        this.cart.forEach((item) => {
-          let product = {};
-          product.idDetail = item.idDetail;
-          product.quantity = item.quantity;
-          this.bill.listProduct.push(product);
-        });
-
-
-        this.addBill();
-        this.productSuccessMessage();
-        this.cart.splice(0, this.cartQuantity);
+      console.log(this.cart);
+      if (this.cart) {
+        let isPaid = false;
+        if (this.account) {
+          isPaid = await this.sendTransaction(this.cartTotal.toString());
+          console.log(isPaid);
+        }
+        if (!isPaid) {
+          this.productPayFalseMessage();
+        } else {
+          this.bill.name = name;
+          this.bill.phone = phone;
+          this.bill.typeShip = picked;
+          this.bill.totalPrice = this.cartTotal;
+          this.cart.forEach((item) => {
+            let product = {};
+            product.idDetail = item.idDetail;
+            product.quantity = item.quantity;
+            this.bill.listProduct.push(product);
+          });
+          this.addBill();
+          this.productSuccessMessage();
+          this.cart.splice(0, this.cartQuantity);
+        }
       } else {
         this.productFalseMessage();
       };
@@ -136,7 +153,7 @@ export default {
       <PaymentItem />
       <div class="mt-5 flex m-auto justify-between">
         <div class="font-light!">Provisional calculation: ({{ cartQuantity }} products):</div>
-        <div>{{ cartTotal }}đ</div>
+        <div>{{ cartTotal }}eth</div>
       </div>
       <div class="m-auto ">
         <div class="mt-5 mb-5 font-bold text-center">Customer information</div>

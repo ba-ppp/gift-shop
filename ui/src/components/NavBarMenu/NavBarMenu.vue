@@ -35,6 +35,9 @@ export default {
     handleClickPayment() {
       router.push("/payment");
     },
+    handleClickHistory() {
+      router.push("/history");
+    },
   }
 };
 </script>
@@ -56,7 +59,7 @@ export default {
       </div>
     </div>
     <div class="flex mr-5">
-      <div class="box">
+      <div class="box" v-on:click="handleClickHistory">
         <img :src="person" height="24" />
       </div>
 

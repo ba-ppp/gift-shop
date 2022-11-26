@@ -149,8 +149,8 @@ export default {
           {{ item.name }}
         </div>
         <div class="flex">
-          <div class="text-store-pink mt-2" v-if="id === selectedProduct">{{ getPrice[selectedSize] }}đ </div>
-          <div class="text-store-pink mt-2" v-if="id !== selectedProduct">{{ item.price[0] }}đ </div>
+          <div class="text-store-pink mt-2" v-if="id === selectedProduct">{{ getPrice[selectedSize] }}eth </div>
+          <div class="text-store-pink mt-2" v-if="id !== selectedProduct">{{ item.price[0] }}eth </div>
 
           <!-- <div class="text-store-pink mt-2" v-for="(price, index) in item.price">
             <div v-if="index === selectedProduct && item.id_product === id"> + {{ price - item.price[0] }}đ</div>
@@ -170,7 +170,7 @@ export default {
     </div>
     <div class="flex space-x-1 ">
       <div
-        class="flex items-center justify-center rounded-md p-2 w-10 h-4 border border-solid text-store-purple-light border-store-purple-light"
+        class="flex items-center justify-center rounded-md p-4 w-12 h-4 border border-solid text-store-purple-light border-store-purple-light"
         :class="(id === selectedProduct) ? classActive(id, index) : classActiveItem(index)"
         v-for="(size, index) in item.size" @click="handleClickSize(id, index)">
         <div>

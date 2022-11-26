@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     ATransfer: typeof import('ant-design-vue/es')['Transfer']
     Box: typeof import('./src/components/Library/Box.vue')['default']
+    History: typeof import('./src/components/History/History.vue')['default']
     Home: typeof import('./src/components/Home/Home.vue')['default']
     Library: typeof import('./src/components/Library/Library.vue')['default']
     MenuSlider: typeof import('./src/components/MenuSlider/MenuSlider.vue')['default']
@@ -42,6 +43,8 @@ declare module '@vue/runtime-core' {
     PaymentItem: typeof import('./src/components/Payment/PaymentItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Search: typeof import('./src/components/History/Search.vue')['default']
+    SearchHistory: typeof import('./src/components/History/SearchHistory.vue')['default']
     ThumbnailItem: typeof import('./src/components/Library/ThumbnailItem.vue')['default']
   }
 }

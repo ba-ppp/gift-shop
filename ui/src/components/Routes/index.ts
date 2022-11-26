@@ -3,7 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/components/Home/Home.vue'
 import Library from '@/components/Library/Library.vue'
 import Payment from '@/components/Payment/Payment.vue'
-
+import History from '@/components/History/History.vue'
+import searchHistory from '@/components/History/SearchHistory.vue'
 const routes = [
     {
         path: '/',
@@ -13,15 +14,17 @@ const routes = [
         path: '/library',
         component: Library
     },
-    
-    // {
-    //     path: '/library/:cat',
-    //     name: 'contact.edit',
-    //     props: (routes: { params: { cat: string } }) => ({ cat: parseInt(routes.params.cat) })
-    // },
     {
         path: '/payment',
         component: Payment
+    },
+    {
+        path: '/history',
+        component: History
+    },
+    {
+        path: '/history/:phone',
+        component: searchHistory
     },
 ]
 
