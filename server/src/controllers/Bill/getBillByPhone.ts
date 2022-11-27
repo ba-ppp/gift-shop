@@ -32,7 +32,8 @@ export const getBillByPhone = () => {
                     .join('product', 'product.id_product', '=', 'product_detail.id_product')
                     .select('*')
                     .where('phone_cus', '=', phone);
-                let currentDate = results[0].date_buy;
+               
+                
                 results.forEach((item: any) => {
                     listOders.nameCus = item.name_cus;
                     listOders.phone = item.phone_cus;
@@ -42,16 +43,17 @@ export const getBillByPhone = () => {
                     product.size = item.size;
                     product.price = item.price;
                     product.quantity = item.quantity;
-                    product.date = item.date_buy; 
+                    product.date = item.date_buy.toLocaleString(); 
                     listOders.listOder.push({...product});
                 });
                 
                 res.send(listOders);
+            
 
             } catch (error) {
                 console.log(error);
-                return next(
-                    new ApiError(500, 'Teddy bears not found'));
+                // return next(
+                //     new ApiError(500, 'Phone not found'));
             }
         }
     )

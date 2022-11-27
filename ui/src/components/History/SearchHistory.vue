@@ -25,14 +25,14 @@ export default {
         NavBarMenu,
         MobileTwoTone,
     },
-    created() {
-        axios.get('http://localhost:8080/bill/getBillByPhone', { params: { phone: this.$route.path.split('/history/').slice(1) } })
+    async created() {
+        await axios.get('http://localhost:8080/bill/getBillByPhone', { params: { phone: this.$route.path.split('/history/').slice(1) } })
             .then(response => {
                 this.listOders = response.data;
-                console.log(this.listOders);
+                console.log(this.listOders.listOder.length);
             })
             .catch(e => {
-                this.errors.push(e)
+                console.log(e);
             })
     },
 
@@ -57,10 +57,10 @@ export default {
     </div>
     <div class="mt-5 bg-store-ghosh-white w-[40%] mx-auto rounded-lg">
 
-        <div class="mx-auto p-3">
-            <div class="text-center">
-                <div>{{ listOders.nameCus }}</div>
+        <div v-if="listOders.listOder.length !== 0" class="mx-auto p-3">
+            <div class="text-center font-bold text-xl ">
                 <div>{{ listOders.phone }}</div>
+                <div>{{ listOders.nameCus }}</div>
             </div>
             <div v-for="(item) in listOders.listOder">
                 <a-row type="flex" class="mt-5">
@@ -88,8 +88,8 @@ export default {
                 </a-row>
             </div>
         </div>
-        <div  class="mt-5 bg-store-ghosh-white w-[40%] mx-auto rounded-lg">
-            <div>You don't have any orders yet!</div>
+        <div v-if="listOders.listOder.length === 0" class="p-3 mt-5 bg-store-ghosh-white w-[40%] mx-auto rounded-lg">
+            <div >You don't have any orders yet!</div>
         </div>
     </div>
 </template>

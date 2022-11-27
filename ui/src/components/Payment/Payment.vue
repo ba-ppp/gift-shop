@@ -82,8 +82,8 @@ export default {
     },
     payment: async function (name, phone, picked) {
       await this.checkConnected();
-      console.log(this.cart);
-      if (this.cart) {
+      console.log(this.cart.length);
+      if (this.cart.length !== 0) {
         let isPaid = false;
         if (this.account) {
           isPaid = await this.sendTransaction(this.cartTotal.toString());
