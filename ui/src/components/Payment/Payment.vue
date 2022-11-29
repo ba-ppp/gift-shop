@@ -155,6 +155,13 @@ export default {
   </div>
   <div class="mt-5 bg-store-ghosh-white w-[40%] mx-auto rounded-lg">
     <div class="mx-auto p-3">
+      <div class="flex justify-between">
+        <div class="text-[18px] font-medium w-[70%]">Product</div>
+        <div class="flex flex-grow justify-between">
+          <div class="text-[18px] font-medium">Quantity</div>
+          <div class="text-[18px] font-medium">Price</div>
+        </div>
+      </div>
       <PaymentItem />
       <div class="mt-5 flex m-auto justify-between">
         <div class="font-light!">
@@ -215,30 +222,6 @@ export default {
           </a-form-item>
         </a-form>
       </div>
-      <!-- <div class="m-auto justify-between">
-        <div class="text-left">Chọn hình thức nhận hàng</div>
-        <div class="flex items-center space-x-20">
-          <div class="flex items-center">
-            <input class="(w-[2rem] h-[16px] accent-[#5451f6] cursor-pointer)!" type="radio" v-model="picked"
-              value="shipHome" id="shipHome" />
-            <span>
-              <label for="shipHome">Giao tận nơi</label>
-            </span>
-          </div>
-          <div class="flex items-center">
-            <input class="(width[2rem] height[16px] accent-[#5451f6] cursor-pointer)!" type="radio" v-model="picked"
-              value="shipStore" id="shipStore" />
-            <span>
-              <label for="shipStore">Nhận tại cửa hàng</label>
-            </span>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div>
-        <button class="btn btn-sm btn-success" @click="payment(formState.name, formState.phone, formState.picked)">
-          <i class="fas fa-plus" /> Thanh Toán
-        </button>
-      </div> -->
     </div>
   </div>
 </template>

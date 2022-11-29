@@ -39,7 +39,7 @@ export default {
 </script>
 <template>
   <div
-    class="flex justify-between items-center border-solid border-b-2 border-t-0 border-l-0 border-b-gray-100 fixed top-0 z-10 bg-white w-full p-3"
+    class="flex justify-between items-center border-solid border-b-2 border-t-0 border-l-0 border-r-0 border-b-gray-100 fixed top-0 bg-white w-full p-3"
   >
     <div class="flex h-9 w-56 leading-4 items-center">
       <div class="box">

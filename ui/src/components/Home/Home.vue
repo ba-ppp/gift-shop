@@ -6,6 +6,8 @@ import { useTransaction } from "@/store/transaction";
 import { useToggleStore } from '@/store/modules/toggle';
 import Loader from '@/components/Loader/Loader.vue';
 
+import { sleep } from '@/utils/utils';
+
 const transaction = useTransaction();
 const toggle = useToggleStore()
 
@@ -14,16 +16,16 @@ const { account, isLoadingTransaction } = storeToRefs(transaction);
 const { isLoading } = storeToRefs(toggle);
 
 // defineProps<{ msg: string }>()
-const handleClick = () => {
+const handleClick = async () => {
   toggle.toggleLoading(true);
-  // router.push("/library");
+  await sleep(1500)
+  router.push("/library");
 };
-
 
 </script>
 
 <template>
-  <Loader v-if="isLoading" />
+  <Loader v-if="isLoading || isLoadingTransaction" />
   <div class="background h-screen w-screen" style="font-family: Kanit">
     <div class="flex w-[80%] m-auto pt-20 justify-around">
       <div class="mt-36">

@@ -11,7 +11,7 @@ export default {
 </script>
 <template>
   <div
-    class="fixed w-screen h-screen flex items-center justify-center bg-[#262626] opacity-80 z-30"
+    class="h-screen fixed w-screen flex items-center justify-center bg-[#262626] opacity-80 z-30 overflow-hidden top-0"
   >
     <div>
       <img :src="Loader" height="256" />

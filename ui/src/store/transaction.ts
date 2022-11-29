@@ -1,3 +1,4 @@
+import { sleep } from '@/utils/utils';
 import { ethers } from "ethers";
 import { defineStore } from "pinia";
 import { ref } from "vue";
@@ -24,7 +25,10 @@ export const useTransaction = defineStore("transaction", () => {
       // send fee
       const parsedAmount = ethers.utils.parseEther(priceValue);
 
-      await ethereum.request({
+      // fake sleep
+      await sleep(1500);
+
+      const request = await ethereum.request({
         method: "eth_sendTransaction",
         params: [
           {
@@ -35,6 +39,8 @@ export const useTransaction = defineStore("transaction", () => {
           },
         ],
       });
+
+      console.log(request);
       return true;
     } catch (error) {
       console.log(error);
@@ -49,6 +55,10 @@ export const useTransaction = defineStore("transaction", () => {
     }
     try {
       isLoadingTransaction.value = true;
+
+      // fake sleep
+      await sleep(1200);
+
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
@@ -67,6 +77,10 @@ export const useTransaction = defineStore("transaction", () => {
     }
     try {
       isLoadingTransaction.value = true;
+
+      // fake sleep
+      await sleep(1200);
+
       const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length) {
         account.value = accounts[0];

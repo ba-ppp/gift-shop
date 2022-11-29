@@ -8,10 +8,10 @@ import MenuSlider from "../MenuSlider/MenuSlider.vue";
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 import rabbit from "@/assets/images/tho-tim-long-2.png";
-import { mapState } from 'pinia';
+import { mapState } from "pinia";
 import { useCartStore } from "@/store/modules/cart";
-import { DeleteTwoTone } from '@ant-design/icons-vue';
-import { defineComponent, ref } from 'vue';
+import { DeleteTwoTone } from "@ant-design/icons-vue";
+import { defineComponent, ref } from "vue";
 
 export default {
   data: function () {
@@ -19,13 +19,27 @@ export default {
       rabbit,
       search,
       menuOpen,
+      cart: [
+        {
+          id_product: "bulbasaur",
+          name: "bulbasaur",
+          id: [1],
+          size: ["30cm"],
+          price: [0.00016],
+          describes: "Suitable For Ages: 0+",
+          status: 1,
+          color: "normal",
+          image: "bulbasaur.png",
+          selectedPrice: 0.00016,
+        },
+      ],
     };
   },
   computed: {
     // ...mapState({
     //   isMenuOpen: (state) => state.toggle.isShowMenuSlider,
     // }),
-    ...mapState(useCartStore, ['cart']),
+    // ...mapState(useCartStore, ['cart']),
   },
 
   methods: {
@@ -33,63 +47,44 @@ export default {
       router.push("/payment");
     },
     deleteCart(idDetail) {
-      let indexProduct = this.cart.findIndex(p => p.idDetail === idDetail);
+      let indexProduct = this.cart.findIndex((p) => p.idDetail === idDetail);
       this.cart.splice(indexProduct, 1);
-    }
+    },
   },
   components: {
-    DeleteTwoTone
+    DeleteTwoTone,
   },
 };
 </script>
 <template>
   <div v-for="(item, id) in cart">
-    <!-- <div class="flex items-center justify-between">
-      <div class="h-[80px] w-[80px] bg-cover bg-center"
-        :style="{ backgroundImage: 'url(' + '/src/assets/images/' + item.image + ')' }"></div>
-      <div class="w-3/4">{{ item.name }}</div>
-      <div>
-        <div>{{ item.selectedSize }}</div>
-        <div>{{ item.selectedPrice }}đ</div>
-        <div>x {{ item.quantity }} </div>
-        <div>
-          <button class="btn btn-sm btn-success" @click="deleteCart(item.idDetail)">
-            <i class="fas fa-plus" /> Xoa
-          </button>
+    <div class="flex">
+      <div class="flex mt-5 w-[70%] space-x-5">
+        <div
+          class="h-[70px] w-[70px] bg-cover bg-center"
+          :style="{
+            backgroundImage: 'url(' + '/src/assets/images/' + item.image + ')',
+          }"
+        ></div>
+
+        <div class="flex">
+          <div>
+            <div>{{ item.name }}</div>
+            <div>{{ item.selectedPrice }} ETH</div>
+            <div @click="deleteCart(item.idDetail)" class="text-[16px]">
+              Remove
+            </div>
+          </div>
         </div>
       </div>
-    </div> -->
-    <a-row type="flex" class="mt-5" >
-      <a-col :span="4" >
-        <p >
-        <div class="h-[70px] w-[70px] bg-cover bg-center"
-          :style="{ backgroundImage: 'url(' + '/src/assets/images/' + item.image + ')' }">
-        </div>
-        </p>
-      </a-col>
-      <a-col :span="16">
-        <p>
-        <div>{{ item.name }}</div>
-        <div>{{ item.selectedSize }}</div>
-        <DeleteTwoTone @click="deleteCart(item.idDetail)" :style="{fontSize: '25px', color: '#08c'}"/>
-        </p>
-      </a-col>
-      <a-col :span="4">
-        <p>
-        <div style="text-align: right">{{ item.selectedPrice }}eth</div>
-        <!-- <div>{{ item.quantity }} </div> -->
+
+      <div class="flex justify-between flex-grow">
+        <div>1</div>
         <div>
-          <a-form-item name="quantity">
-            <a-input-number style="width: 65%; margin-left: 35%;" v-model:value="item.quantity" :min="1" :max="10" />
-          </a-form-item>
-          <!-- <button class="btn btn-sm btn-success" @click="deleteCart(item.idDetail)">
-            <i class="fas fa-plus" /> Delete
-          </button> -->
-          
+          <div style="">{{ item.selectedPrice }} ETH</div>
         </div>
-        </p>
-      </a-col>
-    </a-row>
+      </div>
+    </div>
   </div>
 </template>
 
