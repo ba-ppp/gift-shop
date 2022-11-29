@@ -1,18 +1,17 @@
-<script >
+<script>
 import person from "@/assets/icons/person.svg";
 import cart from "@/assets/icons/cart.svg";
 import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
 // import { mapGetters, mapState } from "vuex";
-import { TOGGLE_MENU_SLIDER } from "@/types";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 import PaymentItem from "./PaymentItem.vue";
-import { mapState, mapActions, mapWritableState } from 'pinia';
+import { mapState, mapActions, mapWritableState } from "pinia";
 import { useCartStore } from "@/store/modules/cart";
-import { defineComponent, reactive, toRaw, computed } from 'vue';
+import { defineComponent, reactive, toRaw, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useTransaction } from "@/store/transaction";
 
@@ -22,7 +21,7 @@ export default {
       person,
       search,
       menuOpen,
-    }
+    };
   },
   components: {
     NavBarMenu,
@@ -30,55 +29,62 @@ export default {
   },
 
   computed: {
-    ...mapWritableState(useCartStore, ['bill', 'cart', 'cartTotal', 'cartQuantity']),
-    ...mapState(useTransaction, ['checkConnected', 'sendTransaction', 'account', 'isLoading']),
+    ...mapWritableState(useCartStore, [
+      "bill",
+      "cart",
+      "cartTotal",
+      "cartQuantity",
+    ]),
+    ...mapState(useTransaction, [
+      "checkConnected",
+      "sendTransaction",
+      "account",
+      "isLoading",
+    ]),
     // ...mapState({
     //   isMenuOpen: (state) => state.toggle.isShowMenuSlider,
     // }),
   },
   methods: {
-    ...mapActions(useCartStore, ['addBill']),
-    handleClickMenuIcon() {
-      this.$store.commit(TOGGLE_MENU_SLIDER);
-    },
+    ...mapActions(useCartStore, ["addBill"]),
     handleClickPayment() {
       router.push("/payment");
     },
     productSuccessMessage: function () {
       Swal.fire({
-        position: 'top',
-        title: 'Order Success!',
-        icon: 'success',
+        position: "top",
+        title: "Order Success!",
+        icon: "success",
         showConfirmButton: false,
         allowOutsideClick: false,
         timerProgressBar: true,
         timer: 1000,
         width: 300,
-      })
+      });
     },
     productFalseMessage: function () {
       Swal.fire({
-        position: 'top',
-        title: 'Empty shopping cart!',
-        icon: 'error',
+        position: "top",
+        title: "Empty shopping cart!",
+        icon: "error",
         showConfirmButton: false,
         allowOutsideClick: false,
         timerProgressBar: true,
         timer: 1000,
         width: 300,
-      })
+      });
     },
     productPayFalseMessage: function () {
       Swal.fire({
-        position: 'top',
-        title: 'Pay failed!',
-        icon: 'error',
+        position: "top",
+        title: "Pay failed!",
+        icon: "error",
         showConfirmButton: false,
         allowOutsideClick: false,
         timerProgressBar: true,
         timer: 1000,
         width: 300,
-      })
+      });
     },
     payment: async function (name, phone, picked) {
       await this.checkConnected();
@@ -108,27 +114,27 @@ export default {
         }
       } else {
         this.productFalseMessage();
-      };
+      }
       this.bill = {
         listProduct: [],
-        name: '',
-        phone: '',
+        name: "",
+        phone: "",
         totalPrice: 0,
-        typeShip: '',
+        typeShip: "",
       };
     },
   },
   setup() {
     const formState = reactive({
-      name: '',
-      phone: '',
-      picked: '',
+      name: "",
+      phone: "",
+      picked: "",
     });
-    const onFinish = values => {
+    const onFinish = (values) => {
       console.log(formState);
     };
-    const onFinishFailed = errorInfo => {
-      console.log('Failed:', errorInfo);
+    const onFinishFailed = (errorInfo) => {
+      console.log("Failed:", errorInfo);
     };
     const disabled = computed(() => {
       return !(formState.name && formState.phone && formState.picked);
@@ -148,47 +154,66 @@ export default {
     <div class="text-center font-bold text-xl">Your cart</div>
   </div>
   <div class="mt-5 bg-store-ghosh-white w-[40%] mx-auto rounded-lg">
-
     <div class="mx-auto p-3">
       <PaymentItem />
       <div class="mt-5 flex m-auto justify-between">
-        <div class="font-light!">Provisional calculation: ({{ cartQuantity }} products):</div>
-        <div>{{ cartTotal }}eth</div>
+        <div class="font-light!">
+          Provisional calculation: ({{ cartQuantity }} gifts):
+        </div>
+        <div>{{ cartTotal }} ETH</div>
       </div>
-      <div class="m-auto ">
+      <div class="m-auto">
         <div class="mt-5 mb-5 font-bold text-center">Customer information</div>
-        <!-- <div class="flex justify-between">
-          <input class="border p-2 rounded w-[261px] h-[40px] focus:outline-none" type="text" v-model="name" :state="validation"
-            placeholder="Họ và tên: " />
-          <input class="border p-2 rounded w-[261px] h-[40px] focus:outline-none" type="text" v-model="phone" :state="validation"
-            placeholder="Số điện thoại: " />
-        </div> -->
-
-        <a-form :model="formState" name="basic" autocomplete="off" @finish="onFinish" @finishFailed="onFinishFailed">
-          <div class="flex space-x-2">
-            <a-form-item label="Full name" name="name"
-              :rules="[{ required: true, message: 'Please input your name!' }]">
+        <a-form
+          :model="formState"
+          name="basic"
+          autocomplete="off"
+          @finish="onFinish"
+          @finishFailed="onFinishFailed"
+        >
+          <div class="flex justify-around">
+            <a-form-item
+              label="Full name"
+              name="name"
+            >
               <a-input v-model:value="formState.name" />
             </a-form-item>
 
-            <a-form-item label="Phone" name="phone" :rules="[{ required: true, message: 'Please input your phone!' }]">
+            <a-form-item
+              label="Phone"
+              name="phone"
+            >
               <a-input v-model:value="formState.phone" />
             </a-form-item>
           </div>
-          <a-form-item class="flex space-x-2" label="Choose a delivery method" name="picked"
-            :rules="[{ required: true, message: 'Please choose a delivery method!' }]">
-            <a-radio-group v-model:value="formState.picked">
+          <a-form-item
+            class="ml-[3.9rem] flex space-x-14"
+            label="Choose a delivery method"
+            name="picked"
+          >
+            <a-radio-group v-model:value="formState.picked" class="flex space-x-8">
               <a-radio value="Delivery">Delivery</a-radio>
-              <a-radio value="Pick up at the store">Pick up at the store</a-radio>
+              <a-radio value="Pick up at the store"
+                >Pick up at the store</a-radio
+              >
             </a-radio-group>
           </a-form-item>
           <!-- <a-form-item :wrapper-col="{ offset: 8, span: 16 }"> -->
           <a-form-item :wrapper-col="{ offset: 6, span: 12 }">
-            <a-button :disabled="disabled" @click="payment(formState.name, formState.phone, formState.picked)"
-              type="primary" block shape="round" size="large" html-type="submit">Pay</a-button>
+            <a-button
+              :disabled="disabled"
+              @click="
+                payment(formState.name, formState.phone, formState.picked)
+              "
+              type="primary"
+              block
+              shape="round"
+              size="large"
+              html-type="submit"
+              >Pay</a-button
+            >
           </a-form-item>
         </a-form>
-
       </div>
       <!-- <div class="m-auto justify-between">
         <div class="text-left">Chọn hình thức nhận hàng</div>

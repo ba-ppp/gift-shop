@@ -5,7 +5,6 @@ import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
 import { mapGetters, mapState } from 'vuex'
-import { TOGGLE_MENU_SLIDER } from "@/types";
 import { router } from "../Routes";
 
 export default {
@@ -29,9 +28,6 @@ export default {
     }),
   },
   methods: {
-    handleClickMenuIcon() {
-      this.$store.commit(TOGGLE_MENU_SLIDER);
-    },
     handleClickPayment() {
       router.push("/payment");
     },
@@ -46,7 +42,7 @@ export default {
     class="flex justify-between items-center border-solid border-b-2 border-t-0 border-l-0 border-b-gray-100 fixed top-0 z-10 bg-white w-full p-3"
   >
     <div class="flex h-9 w-56 leading-4 items-center">
-      <div class="box" v-on:click="handleClickMenuIcon">
+      <div class="box">
         <img :src="menuOpen" />
       </div>
 

@@ -5,7 +5,6 @@ import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
 // import { mapGetters, mapState } from "vuex";
-import { TOGGLE_MENU_SLIDER } from "@/types";
 import axios from 'axios';
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
@@ -35,19 +34,6 @@ export default {
                 console.log(e);
             })
     },
-
-    methods: {
-
-        handleClickMenuIcon() {
-            this.$store.commit(TOGGLE_MENU_SLIDER);
-        },
-        // searchHistory: function (phone) {
-        //   router.push("/history?phone");
-        // },
-
-    },
-
-
 };
 </script>
 <template>

@@ -5,7 +5,6 @@ import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
 // import { mapGetters, mapState } from "vuex";
-import { TOGGLE_MENU_SLIDER } from "@/types";
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 import rabbit from "@/assets/images/tho-tim-long-2.png";
@@ -30,9 +29,6 @@ export default {
   },
 
   methods: {
-    handleClickMenuIcon() {
-      this.$store.commit(TOGGLE_MENU_SLIDER);
-    },
     handleClickPayment() {
       router.push("/payment");
     },

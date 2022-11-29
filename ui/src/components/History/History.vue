@@ -5,7 +5,6 @@ import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
 // import { mapGetters, mapState } from "vuex";
-import { TOGGLE_MENU_SLIDER } from "@/types";
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 
@@ -14,7 +13,7 @@ import { useCartStore } from "@/store/modules/cart";
 import { defineComponent, reactive, toRaw, computed } from 'vue';
 import { storeToRefs } from "pinia";
 import { MobileTwoTone } from '@ant-design/icons-vue';
-
+import { useToggleStore } from '@/store/modules/toggle';
 
 export default {
   // props: {
@@ -34,9 +33,9 @@ export default {
 
 
   methods: {
-
+    ...mapActions(useToggleStore, ['toggleMenuSlider']),
     handleClickMenuIcon() {
-      this.$store.commit(TOGGLE_MENU_SLIDER);
+      this.toggleMenuSlider();
     },
     handleClickHistory() {
       router.push("/history");

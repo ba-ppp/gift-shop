@@ -5,6 +5,7 @@ import Library from '@/components/Library/Library.vue'
 import Payment from '@/components/Payment/Payment.vue'
 import History from '@/components/History/History.vue'
 import searchHistory from '@/components/History/SearchHistory.vue'
+
 const routes = [
     {
         path: '/',

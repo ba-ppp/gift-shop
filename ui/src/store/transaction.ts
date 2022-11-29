@@ -12,7 +12,7 @@ const { ethereum } = window;
 
 export const useTransaction = defineStore("transaction", () => {
   const account = ref(null);
-  const isLoading = ref(false);
+  const isLoadingTransaction = ref(false);
 
   const sendTransaction = async (priceValue: string) => {
     try {
@@ -48,7 +48,7 @@ export const useTransaction = defineStore("transaction", () => {
       return;
     }
     try {
-      isLoading.value = true;
+      isLoadingTransaction.value = true;
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
@@ -56,7 +56,7 @@ export const useTransaction = defineStore("transaction", () => {
     } catch (error) {
       console.log(error);
     } finally {
-      isLoading.value = false;
+      isLoadingTransaction.value = false;
     }
   };
 
@@ -66,7 +66,7 @@ export const useTransaction = defineStore("transaction", () => {
       return false;
     }
     try {
-      isLoading.value = true;
+      isLoadingTransaction.value = true;
       const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length) {
         account.value = accounts[0];
@@ -76,12 +76,12 @@ export const useTransaction = defineStore("transaction", () => {
     } catch (error) {
       console.log(error);
     } finally {
-      isLoading.value = false;
+      isLoadingTransaction.value = false;
     }
   };
   return {
     account,
-    isLoading,
+    isLoadingTransaction,
     connectWallet,
     sendTransaction,
     checkConnected,
