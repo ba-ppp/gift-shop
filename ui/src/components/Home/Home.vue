@@ -64,13 +64,6 @@ const handleClick = async () => {
 
 <style scoped>
 .background {
-  /* background-color: hsla(240, 31%, 7%, 1);
-  background-image: radial-gradient(
-      at 99% 98%,
-      hsla(264, 87%, 20%, 1) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 32% 99%, hsla(264, 87%, 20%, 1) 0px, transparent 50%); */
   background-color: hsla(259, 75%, 21%, 1);
   background-image: radial-gradient(
       at 47% 41%,

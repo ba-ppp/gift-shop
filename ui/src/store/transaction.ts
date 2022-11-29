@@ -78,6 +78,7 @@ export const useTransaction = defineStore("transaction", () => {
     try {
       isLoadingTransaction.value = true;
 
+      console.log('first')
       // fake sleep
       await sleep(1200);
 

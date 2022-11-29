@@ -10,7 +10,7 @@
   >
     <a-sub-menu key="sub1" @titleClick="titleClick">
       <template #icon>
-        <MailOutlined />
+        <TagOutlined />
       </template>
       <template #title>Teddy Bear</template>
       <a-menu-item-group key="g1" title="">
@@ -59,6 +59,7 @@ import {
   QqOutlined,
   AppstoreOutlined,
   SettingOutlined,
+  TagOutlined,
 } from "@ant-design/icons-vue";
 import type { MenuProps } from "ant-design-vue";
 import { mapWritableState, mapActions, mapState } from "pinia";
@@ -69,6 +70,7 @@ export default defineComponent({
   components: {
     MailOutlined,
     QqOutlined,
+    TagOutlined,
     AppstoreOutlined,
     SettingOutlined,
   },

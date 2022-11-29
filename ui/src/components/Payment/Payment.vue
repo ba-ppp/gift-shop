@@ -11,9 +11,11 @@ import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 import PaymentItem from "./PaymentItem.vue";
 import { mapState, mapActions, mapWritableState } from "pinia";
 import { useCartStore } from "@/store/modules/cart";
+import { useToggleStore } from '@/store/modules/toggle';
 import { defineComponent, reactive, toRaw, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useTransaction } from "@/store/transaction";
+import Loader from "@/components/Loader/Loader.vue";
 
 export default {
   data: function () {
@@ -39,14 +41,13 @@ export default {
       "checkConnected",
       "sendTransaction",
       "account",
-      "isLoading",
+      "isLoadingTransaction",
     ]),
-    // ...mapState({
-    //   isMenuOpen: (state) => state.toggle.isShowMenuSlider,
-    // }),
+    ...mapState(useToggleStore, ["isLoading"]),
   },
   methods: {
     ...mapActions(useCartStore, ["addBill"]),
+    ...mapActions(useToggleStore, ["toggleLoading"]),
     handleClickPayment() {
       router.push("/payment");
     },
@@ -88,12 +89,10 @@ export default {
     },
     payment: async function (name, phone, picked) {
       await this.checkConnected();
-      console.log(this.cart.length);
       if (this.cart.length !== 0) {
         let isPaid = false;
         if (this.account) {
           isPaid = await this.sendTransaction(this.cartTotal.toString());
-          console.log(isPaid);
         }
         if (!isPaid) {
           this.productPayFalseMessage();
@@ -149,21 +148,23 @@ export default {
 };
 </script>
 <template>
+  <Loader v-if="isLoading || isLoadingTransaction" />
   <NavBarMenu hasDisabledSlider />
   <div class="mt-24 w-full">
     <div class="text-center font-bold text-xl">Your cart</div>
   </div>
-  <div class="mt-5 bg-store-ghosh-white w-[40%] mx-auto rounded-lg">
+  <div class="mt-5 bg-store-ghosh-white w-[70%] mx-auto rounded-lg">
     <div class="mx-auto p-3">
       <div class="flex justify-between">
         <div class="text-[18px] font-medium w-[70%]">Product</div>
-        <div class="flex flex-grow justify-between">
+        <div class="flex w-[20%] justify-between">
           <div class="text-[18px] font-medium">Quantity</div>
           <div class="text-[18px] font-medium">Price</div>
         </div>
+        <div class="w-[10%]"></div>
       </div>
       <PaymentItem />
-      <div class="mt-5 flex m-auto justify-between">
+      <div class="mt-5 w-[90%] flex justify-between">
         <div class="font-light!">
           Provisional calculation: ({{ cartQuantity }} gifts):
         </div>
@@ -179,17 +180,11 @@ export default {
           @finishFailed="onFinishFailed"
         >
           <div class="flex justify-around">
-            <a-form-item
-              label="Full name"
-              name="name"
-            >
+            <a-form-item label="Full name" name="name">
               <a-input v-model:value="formState.name" />
             </a-form-item>
 
-            <a-form-item
-              label="Phone"
-              name="phone"
-            >
+            <a-form-item label="Phone" name="phone">
               <a-input v-model:value="formState.phone" />
             </a-form-item>
           </div>
@@ -198,7 +193,10 @@ export default {
             label="Choose a delivery method"
             name="picked"
           >
-            <a-radio-group v-model:value="formState.picked" class="flex space-x-8">
+            <a-radio-group
+              v-model:value="formState.picked"
+              class="flex space-x-8"
+            >
               <a-radio value="Delivery">Delivery</a-radio>
               <a-radio value="Pick up at the store"
                 >Pick up at the store</a-radio
@@ -212,6 +210,7 @@ export default {
               @click="
                 payment(formState.name, formState.phone, formState.picked)
               "
+              class="disabled:bg-gray-200 disabled:border-gray-200 bg-store-purple-light border-store-purple-light text-white"
               type="primary"
               block
               shape="round"
@@ -233,5 +232,9 @@ export default {
 
 /* body {
   @apply bg-store-ghosh-white;
+} */
+/* .ant-btn-primary {
+  background-color: #9a6aff !important;
+  border-color: #9a6aff !important;
 } */
 </style>

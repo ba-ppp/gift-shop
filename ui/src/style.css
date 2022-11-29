@@ -22,6 +22,69 @@ body {
   font-family: Kanit;
 }
 
+.ant-radio-checked .ant-radio-inner {
+  border-color: #9a6aff !important ;
+}
+
+.ant-radio-checked .ant-radio-inner:after {
+  background-color: #9a6aff !important;
+}
+
+.ant-radio:hover .ant-radio-inner {
+  border-color: #9a6aff !important;
+}
+
+.ant-input:focus { /*or a more specific selector*/
+   outline-color: #9a6aff !important;
+   border-color: #9a6aff !important;
+   box-shadow: 0 0 2px #9a6aff !important;
+}
+
+.ant-input:hover {
+  border-color: #9a6aff !important;
+}
+
+.ant-pagination-item-active {
+  border-color: #9a6aff !important;;
+}
+
+.ant-pagination-item-active a {
+  color: #9a6aff !important;
+}
+
+.ant-pagination-item:hover {
+  border-color: #9a6aff !important;
+}
+
+.ant-pagination-item:hover a {
+  color: #9a6aff !important;
+}
+
+.ant-menu-submenu-selected {
+  color: #9a6aff !important;
+}
+
+.ant-menu-title-content {
+  color: #9a6aff !important;
+}
+
+.ant-menu-submenu-title {
+  color: #9a6aff !important;
+}
+
+.ant-menu-submenu-title::after {
+  color: #9a6aff !important;
+}
+
+.ant-menu-item-selected {
+  color: #9a6aff !important;
+  background-color: #f3eeff !important;
+}
+
+.ant-menu-item::after {
+  border-right: 3px solid #9a6aff !important;
+}
+
 .button_primary {
   @apply cursor-pointer text-[16px] px-5 text-white font-semibold rounded-2xl shadow-md outline-none flex items-center justify-center hover:opacity-80;
 }

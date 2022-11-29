@@ -19,27 +19,24 @@ export default {
       rabbit,
       search,
       menuOpen,
-      cart: [
-        {
-          id_product: "bulbasaur",
-          name: "bulbasaur",
-          id: [1],
-          size: ["30cm"],
-          price: [0.00016],
-          describes: "Suitable For Ages: 0+",
-          status: 1,
-          color: "normal",
-          image: "bulbasaur.png",
-          selectedPrice: 0.00016,
-        },
-      ],
+      // cart: [
+      //   {
+      //     id_product: "bulbasaur",
+      //     name: "bulbasaur",
+      //     id: [1],
+      //     size: ["30cm"],
+      //     price: [0.00016],
+      //     describes: "Suitable For Ages: 0+",
+      //     status: 1,
+      //     color: "normal",
+      //     image: "bulbasaur.png",
+      //     selectedPrice: 0.00016,
+      //   },
+      // ],
     };
   },
   computed: {
-    // ...mapState({
-    //   isMenuOpen: (state) => state.toggle.isShowMenuSlider,
-    // }),
-    // ...mapState(useCartStore, ['cart']),
+    ...mapState(useCartStore, ["cart", "cartTotal", "cartQuantity"]),
   },
 
   methods: {
@@ -67,22 +64,30 @@ export default {
           }"
         ></div>
 
-        <div class="flex">
+        <div class="flex items-center">
           <div>
-            <div>{{ item.name }}</div>
-            <div>{{ item.selectedPrice }} ETH</div>
-            <div @click="deleteCart(item.idDetail)" class="text-[16px]">
-              Remove
+            <div class="text-store-purple-light font-bold text-[16px]">
+              {{ item.name }}
+            </div>
+            <div class="text-store-purple-dark font-bold text-[16px]">
+              {{ item.selectedSize ?? "30cm" }}
             </div>
           </div>
         </div>
       </div>
 
-      <div class="flex justify-between flex-grow">
-        <div>1</div>
+      <div class="flex justify-between flex-grow items-center">
+        <div class="text-center w-[25%]">{{ item.quantity ?? 1 }}</div>
         <div>
-          <div style="">{{ item.selectedPrice }} ETH</div>
+          <div class="text-store-pink">{{ item.selectedPrice }} ETH</div>
         </div>
+      </div>
+      <div class="w-[10%] flex justify-center items-center">
+        <DeleteTwoTone
+          @click="deleteCart(item.idDetail)"
+          twoToneColor="#ef4444"
+          class="text-[20px]"
+        />
       </div>
     </div>
   </div>
@@ -92,63 +97,4 @@ export default {
 .box {
   @apply h-8 p-2 flex items-center cursor-pointer;
 }
-
-/* 
-.buttons_added {
-  opacity: 1;
-  display: inline-block;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  white-space: nowrap;
-  vertical-align: top;
-
-}
-
-.is-form {
-  overflow: hidden;
-  position: relative;
-  background-color: #f9f9f9;
-  height: 1.5rem;
-  width: 1.5rem;
-  padding: 0;
-  text-shadow: 1px 1px 1px #fff;
-  border: 1px solid #ddd;
-  margin: 1px;
-}
-
-.is-form:focus,
-.input-text:focus {
-  outline: none;
-}
-
-.is-form.minus {
-  border-radius: 4px;
-}
-
-.is-form.plus {
-  border-radius: 4px;
-}
-
-.input-qty {
-  background-color: #fff;
-  height: 1.5rem;
-  text-align: center;
-  font-size: 1rem;
-  display: inline-block;
-  vertical-align: top;
-  margin: 1px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  border-left: 0;
-  border-right: 0;
-  padding: 0;
-  width: 1.5rem;
-  border-radius: 5px;
-}
-
-.input-qty::-webkit-outer-spin-button,
-.input-qty::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
 </style>
