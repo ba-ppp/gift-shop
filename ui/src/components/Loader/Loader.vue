@@ -5,7 +5,6 @@ export default {
   data: function () {
     return {
       Loader,
-      Doll
     };
   },
 };
