@@ -109,6 +109,9 @@ export default {
           });
           this.addBill();
           this.productSuccessMessage();
+          this.formState.name = '';
+          this.formState.phone = '';
+          this.formState.picked = '';
           this.cart.splice(0, this.cartQuantity);
         }
       } else {

@@ -32,9 +32,9 @@
       <template #icon>
         <AppstoreOutlined />
       </template>
-      <template #title>KeyRing</template>
-      <a-menu-item key="5">Option 5</a-menu-item>
-      <a-menu-item key="6">Option 6</a-menu-item>
+      <template #title>Gift</template>
+      <a-menu-item key="5" @click="changeCat('keyring')">Keyring</a-menu-item>
+      <a-menu-item key="6" @click="changeCat('moneybox')">Money Box</a-menu-item>
       <!-- <a-sub-menu key="sub3" title="Submenu">
         <a-menu-item key="7">Option 7</a-menu-item>
         <a-menu-item key="8">Option 8</a-menu-item>

@@ -63,6 +63,7 @@ export const getProductByCat = () => {
                 });
             products.push(data);
             res.send(products);
+            // console.log(products);
                 
         } catch (error) {
         console.log(error);
