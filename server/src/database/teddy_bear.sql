@@ -4,6 +4,7 @@
 -- use teddy_bears;
 -- select * from bill_detail join bill where bill.id_bill = bill_detail.id_bill;
 -- select * from bill_detail;
+
 create table category (
   id_cat varchar(100) primary key, 
   name_cat varchar(100) not null
@@ -44,6 +45,9 @@ create table bill_detail (
 -- insert category
 insert into category values("pokemon","pokemon");
 insert into category values("dog","dog");
+insert into category values("keyring","keyring");
+insert into category values("moneybox","moneybox");
+
 
 -- insert into product 
 -- delimiter $
@@ -93,7 +97,7 @@ call insert_product("jigglypuff","jigglypuff","pokemon",
 call insert_product("jigglypuff","jigglypuff","pokemon",
                     "Suitable For Ages: 0+",
                     "normal", "jigglypuff.png", "22cm", "0.0001");
-call insert_product("pikachu_male","pikachu_male","pokemon",
+call insert_product("pikachu male","pikachu_male","pokemon",
                     "Suitable For Ages: 0+",
                     "normal", "pikachu_male.png", "50cm", "0.00032");
 call insert_product("pikachu","pikachu","pokemon",
@@ -201,3 +205,45 @@ call insert_product("shiba","shiba","dog",
 call insert_product("shiba","shiba","dog",
                     "Suitable For Ages: 0+",
                     "normal", "shiba.png", "65cm", "0.0006");
+                    
+call insert_product("pikachu lie","pikachu lie","pokemon", "Suitable For Ages: 0+", "normal", "pikachu_lie.jpeg", "30cm", "0.00013");
+call insert_product("pikachu lie","pikachu lie","pokemon", "Suitable For Ages: 0+", "normal", "pikachu_lie.jpeg", "50cm", "0.00019");
+call insert_product("pikachu lie","pikachu lie","pokemon", "Suitable For Ages: 0+", "normal", "pikachu_lie.jpeg", "70cm", "0.00049");
+
+call insert_product("shiba cool","shiba cool","dog", "Suitable For Ages: 0+", "normal", "shiba_cool.jpeg", "65cm", "0.00059");
+
+call insert_product("grey","grey","dog", "Suitable For Ages: 0+", "normal", "grey.jpeg", "35cm", "0.00023");
+call insert_product("grey","grey","dog", "Suitable For Ages: 0+", "normal", "grey.jpeg", "45cm", "0.00031");
+call insert_product("grey","grey","dog", "Suitable For Ages: 0+", "normal", "grey.jpeg", "55cm", "0.00042");
+call insert_product("grey","grey","dog", "Suitable For Ages: 0+", "normal", "grey.jpeg", "70cm", "0.00058");
+
+call insert_product("spot","spot","dog", "Suitable For Ages: 0+", "normal", "spot.jpeg", "50cm", "0.00018");
+call insert_product("spot","spot","dog", "Suitable For Ages: 0+", "normal", "spot.jpeg", "70cm", "0.00029");
+
+call insert_product("husky baby","husky baby","dog", "Suitable For Ages: 0+", "normal", "husky_baby.jpeg", "50cm", "0.00029");
+
+call insert_product("lucky","lucky","dog", "Suitable For Ages: 0+", "normal", "lucky.jpeg", "30cm", "0.0001");
+
+call insert_product("husky","husky","dog", "Suitable For Ages: 0+", "normal", "husky.jpeg", "60cm", "0.00024");
+call insert_product("husky","husky","dog", "Suitable For Ages: 0+", "normal", "husky.jpeg", "70cm", "0.00028");
+call insert_product("husky","husky","dog", "Suitable For Ages: 0+", "normal", "husky.jpeg", "80cm", "0.00039");
+
+call insert_product("shiba cosplay cabbage","shiba cosplay cabbage","dog", "Suitable For Ages: 0+", "normal", "shiba_cosplay_cabbage.jpeg", "30cm", "0.00024");
+call insert_product("shiba cosplay cabbage","shiba cosplay cabbage","dog", "Suitable For Ages: 0+", "normal", "shiba_cosplay_cabbage.jpeg", "35cm", "0.0003");
+call insert_product("shiba cosplay cabbage","shiba cosplay cabbage","dog", "Suitable For Ages: 0+", "normal", "shiba_cosplay_cabbage.jpeg", "50cm", "0.00035");
+call insert_product("shiba cosplay cabbage","shiba cosplay cabbage","dog", "Suitable For Ages: 0+", "normal", "shiba_cosplay_cabbage.jpeg", "60cm", "0.00045");
+
+call insert_product("akita","akita","dog", "Suitable For Ages: 0+", "normal", "akita.jpeg", "50cm", "0.00024");
+call insert_product("akita","akita","dog", "Suitable For Ages: 0+", "normal", "akita.jpeg", "30cm", "0.00029");
+call insert_product("akita","akita","dog", "Suitable For Ages: 0+", "normal", "akita.jpeg", "70cm", "0.00049");
+             
+call insert_product("hoodie","hoodie","keyring", "Suitable For Ages: 0+", "normal", "hoodie.jpeg", "18cm", "0.000056");
+call insert_product("great","great","keyring", "Suitable For Ages: 0+", "normal", "great.jpeg", "18cm", "0.000056");
+call insert_product("oopsie","oopsie","keyring", "Suitable For Ages: 0+", "normal", "oopsie.jpeg", "18cm", "0.000056");
+call insert_product("moshi","moshi","keyring", "Suitable For Ages: 0+", "normal", "moshi.jpeg", "18cm", "0.000175");
+call insert_product("wallet","wallet","keyring", "Suitable For Ages: 0+", "normal", "wallet.jpeg", "18cm", "0.00007");
+call insert_product("translucent","translucent","keyring", "Suitable For Ages: 0+", "normal", "translucent.jpeg", "18cm", "0.000063");
+call insert_product("bubu","bubu","keyring", "Suitable For Ages: 0+", "normal", "bubu.jpeg", "18cm", "0.000024");
+call insert_product("aka","aka","keyring", "Suitable For Ages: 0+", "normal", "aka.jpeg", "18cm", "0.000056");
+                    
+                    
