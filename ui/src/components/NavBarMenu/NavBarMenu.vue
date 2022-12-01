@@ -34,6 +34,9 @@ export default {
     handleClickHistory() {
       router.push("/history");
     },
+    handleClickLibrary() {
+      router.push("/library");
+    },
   }
 };
 </script>
@@ -48,7 +51,7 @@ export default {
 
       <div class="flex items-center font-size[18px] cursor-pointer space-x-1">
         <!-- <img src={Logo} alt="logo" width={32} height={32} /> -->
-        <div class="flex">
+        <div class="flex box" v-on:click="handleClickLibrary">
           <span class="text-store-purple-light font-black">Teddy</span>
           <span class="font-black">Store</span>
         </div>

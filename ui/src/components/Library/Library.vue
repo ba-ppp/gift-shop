@@ -16,7 +16,10 @@ export default {
   },
   computed: {
     ...mapState(useToggleStore, ["isLoading"]),
-    ...mapState(useProductsStore, ["totalPage"]),
+    ...mapState(useProductsStore, ["allProduct", "totalPage"]),
+    getProductSize() {
+      return this.allProduct.length
+    }
   },
   methods: {
     ...mapActions(useProductsStore, ["changePage"]),
@@ -42,7 +45,9 @@ export default {
     <ThumbnailItem />
   </div>
   <div class="py-12 ml-64 w-[80%] flex justify-center">
-    <a-pagination @change="onShowSizeChange" v-model:current="this.currentPage" :total="this.totalPage" show-less-items />
+    <a-pagination @change="onShowSizeChange" :pageSize=8 v-model:current="this.currentPage" :total="this.getProductSize" show-less-items />
+    <!-- {{allProduct.length}} -->
+    <!-- {{totalPage}} -->
   </div>
 </template>
 
