@@ -4,7 +4,6 @@ import cart from "@/assets/icons/cart.svg";
 import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
-// import { mapGetters, mapState } from "vuex";
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 

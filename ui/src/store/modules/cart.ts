@@ -1,27 +1,26 @@
-import axios from 'axios';
-import { defineStore } from 'pinia';
+import axios from "axios";
+import { defineStore } from "pinia";
 
-export const useCartStore = defineStore('cart', {
+export const useCartStore = defineStore("cart", {
   state() {
     return {
       cart: [],
       bill: {
         listProduct: [],
-        name : '',
-        phone : '',
-        totalPrice : 0,
-        typeShip : '',
+        name: "",
+        phone: "",
+        totalPrice: 0,
+        typeShip: "",
       },
     };
   },
   actions: {
     async addBill() {
       try {
-        await axios.post('http://localhost:8080/bill/addBill', this.bill);
+        await axios.post("http://localhost:8080/bill/addBill", this.bill);
       } catch (error) {
         console.log(error);
       }
-      
     },
   },
   getters: {
@@ -39,7 +38,5 @@ export const useCartStore = defineStore('cart', {
       });
       return quantity;
     },
-    
-    
   },
 });

@@ -4,7 +4,6 @@ import cart from "@/assets/icons/cart.svg";
 import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
-// import { mapGetters, mapState } from "vuex";
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 import rabbit from "@/assets/images/tho-tim-long-2.png";
@@ -19,20 +18,6 @@ export default {
       rabbit,
       search,
       menuOpen,
-      // cart: [
-      //   {
-      //     id_product: "bulbasaur",
-      //     name: "bulbasaur",
-      //     id: [1],
-      //     size: ["30cm"],
-      //     price: [0.00016],
-      //     describes: "Suitable For Ages: 0+",
-      //     status: 1,
-      //     color: "normal",
-      //     image: "bulbasaur.png",
-      //     selectedPrice: 0.00016,
-      //   },
-      // ],
     };
   },
   computed: {

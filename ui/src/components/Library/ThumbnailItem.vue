@@ -8,18 +8,11 @@ import { mapState, mapActions } from "pinia";
 import { useProductsStore } from "@/store/modules/product";
 import { useCartStore } from "@/store/modules/cart";
 import { useToggleStore } from "@/store/modules/toggle";
-import { sleep } from '@/utils/utils';
+import { sleep } from "@/utils/utils";
 
 import axios from "axios";
 
 export default {
-  // props: {
-  //   cart: {
-  //     type: Array,
-  //     default: []
-  //   }
-  // },
-  // props: ['product'],
   data: function () {
     return {
       listPrice: [],
@@ -29,12 +22,6 @@ export default {
       selectedSize: 0,
     };
   },
-  // async created() {
-  //   await axios.get('http://localhost:8080/product/getProductByCat', { params: { cat: 'pokemon' } })
-  //     .then((response) => {
-  //       this.product = response.data;
-  //     })
-  // },
 
   async created() {
     this.toggleLoading(true);
@@ -50,20 +37,11 @@ export default {
   computed: {
     getPrice() {
       let index = this.selectedProduct;
-      // this.listPrice = item.price;
-      // let indexPrice = this.selectedSize;
       return this.product[index].price;
     },
     ...mapState(useProductsStore, ["product"]),
     ...mapState(useCartStore, ["cart"]),
   },
-  // mounted: function() {
-  //   this.cart = localStorage.getItem("cart")
-  //     ? JSON.parse(localStorage.getItem("cart"))
-  //     : [];
-
-  //     setTimeout(() => (this.loadingProducts = false), 2000);
-  // },
   methods: {
     ...mapActions(useToggleStore, ["toggleLoading"]),
     ...mapActions(useProductsStore, ["getProductStore"]),
@@ -112,22 +90,13 @@ export default {
         item.idDetail = item.id[this.selectedSize];
         this.cart.push({ ...item });
       }
-      // item.selectedPrice = item.price[this.selectedSize];
-      // item.selectedSize = item.size[this.selectedSize];
-      // item.idDetail = item.id[this.selectedSize];
-      // item.quantity = 1;
-      // this.cart.push({ ...item });
-      // this.productAddedMessage();
       this.productAddedMessage();
-      console.log(this.cart);
     },
   },
 };
-// const count = ref(0)
 </script>
 
 <template>
- 
   <div
     class="border border-solid bg-white border-white w-64 h-92 rounded-2xl"
     v-for="(item, id) in product"

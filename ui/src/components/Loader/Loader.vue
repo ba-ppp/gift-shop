@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import Loader from "@/assets/images/loader.gif";
 
 export default {

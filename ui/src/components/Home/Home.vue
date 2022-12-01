@@ -15,7 +15,6 @@ const { checkConnected } = useTransaction();
 const { account, isLoadingTransaction } = storeToRefs(transaction);
 const { isLoading } = storeToRefs(toggle);
 
-// defineProps<{ msg: string }>()
 const handleClick = async () => {
   toggle.toggleLoading(true);
   await sleep(1500)

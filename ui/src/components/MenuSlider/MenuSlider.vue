@@ -23,10 +23,6 @@
         >
         <a-menu-item key="2" @click="changeCat('dog')">Dogs</a-menu-item>
       </a-menu-item-group>
-      <!-- <a-menu-item-group key="g2" title="Item 2">
-        <a-menu-item key="3">Option 3</a-menu-item>
-        <a-menu-item key="4">Option 4</a-menu-item>
-      </a-menu-item-group> -->
     </a-sub-menu>
     <a-sub-menu key="sub2" @titleClick="titleClick">
       <template #icon>
@@ -34,11 +30,9 @@
       </template>
       <template #title>Gift</template>
       <a-menu-item key="5" @click="changeCat('keyring')">Keyring</a-menu-item>
-      <a-menu-item key="6" @click="changeCat('moneybox')">Money Box</a-menu-item>
-      <!-- <a-sub-menu key="sub3" title="Submenu">
-        <a-menu-item key="7">Option 7</a-menu-item>
-        <a-menu-item key="8">Option 8</a-menu-item>
-      </a-sub-menu> -->
+      <a-menu-item key="6" @click="changeCat('moneybox')"
+        >Money Box</a-menu-item
+      >
     </a-sub-menu>
     <a-sub-menu key="sub4">
       <template #icon>
@@ -106,12 +100,12 @@ export default defineComponent({
     const titleClick = (e: Event) => {
       console.log("titleClick", e);
     };
-    watch(
-      () => openKeys,
-      (val) => {
-        console.log("openKeys", val);
-      }
-    );
+    // watch(
+    //   () => openKeys,
+    //   (val) => {
+    //     console.log("openKeys", val);
+    //   }
+    // );
     return {
       selectedKeys,
       openKeys,

@@ -4,12 +4,11 @@ import cart from "@/assets/icons/cart.svg";
 import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
-import { mapGetters, mapState } from 'vuex'
 import { router } from "../Routes";
 
 export default {
   props: {
-    hasDisabledSlider: Boolean
+    hasDisabledSlider: Boolean,
   },
   data: function () {
     return {
@@ -22,11 +21,6 @@ export default {
   components: {
     MenuSlider,
   },
-  computed: {
-    ...mapState({
-      isMenuOpen: state => state.toggle.isShowMenuSlider
-    }),
-  },
   methods: {
     handleClickPayment() {
       router.push("/payment");
@@ -37,7 +31,7 @@ export default {
     handleClickLibrary() {
       router.push("/library");
     },
-  }
+  },
 };
 </script>
 <template>
@@ -50,7 +44,6 @@ export default {
       </div>
 
       <div class="flex items-center font-size[18px] cursor-pointer space-x-1">
-        <!-- <img src={Logo} alt="logo" width={32} height={32} /> -->
         <div class="flex box" v-on:click="handleClickLibrary">
           <span class="text-store-purple-light font-black">Teddy</span>
           <span class="font-black">Store</span>
@@ -69,7 +62,7 @@ export default {
         <img :src="cart" height="24" />
       </div>
     </div>
-    <MenuSlider v-if="!hasDisabledSlider"  />
+    <MenuSlider v-if="!hasDisabledSlider" />
   </div>
 </template>
 

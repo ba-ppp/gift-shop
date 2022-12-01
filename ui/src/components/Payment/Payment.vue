@@ -4,14 +4,13 @@ import cart from "@/assets/icons/cart.svg";
 import search from "@/assets/icons/search.svg";
 import menuOpen from "@/assets/icons/menu_open.svg";
 import MenuSlider from "../MenuSlider/MenuSlider.vue";
-// import { mapGetters, mapState } from "vuex";
 import Swal from "sweetalert2";
 import { router } from "../Routes";
 import NavBarMenu from "../NavBarMenu/NavBarMenu.vue";
 import PaymentItem from "./PaymentItem.vue";
 import { mapState, mapActions, mapWritableState } from "pinia";
 import { useCartStore } from "@/store/modules/cart";
-import { useToggleStore } from '@/store/modules/toggle';
+import { useToggleStore } from "@/store/modules/toggle";
 import { defineComponent, reactive, toRaw, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useTransaction } from "@/store/transaction";
@@ -109,9 +108,9 @@ export default {
           });
           this.addBill();
           this.productSuccessMessage();
-          this.formState.name = '';
-          this.formState.phone = '';
-          this.formState.picked = '';
+          this.formState.name = "";
+          this.formState.phone = "";
+          this.formState.picked = "";
           this.cart.splice(0, this.cartQuantity);
         }
       } else {
